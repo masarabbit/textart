@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="./styles/main.css" />
+  <script src ="./scripts/experiment.js" charset="utf-8"></script>
+
+  <title>textart converter :)</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+    </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <h1>textart converter :)</h1>
+
+    <canvas></canvas>
+    
+    <div class="mini_wrap">
+      <input id="uploadFile" type="file" placeholder="upload file" single>
+      <label for="uploadFile">select img file</label>
+      <button class="output">output</button>
+      <button class="download_button disabled">download html file</button>
+      <button class="download_text_button disabled">download text file</button>
+      <label class="switch">
+        <input class="color_toggle" type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <p class="info hidden">&#60; please select an image file &#62;</p>
+
+    <a class="download_link hidden" download="" href=”” ></a>
+    <a class="download_text_link hidden" download="" href=”” ></a>
+
+    <div class="grid"></div>
+    <div class="container hidden"></div>
+
+  </div>
+  
+
+</body>
+
+</html>

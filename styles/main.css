@@ -164,11 +164,21 @@ button, label {
   word-break: break-all;
 }
 
-.cell {
+/* .cell {
   position: relative;
   height: 4px;
   width: 4px;
   font-size: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.cell {
+  position: relative;
+  height: 10px;
+  width: 10px;
+  font-size: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
