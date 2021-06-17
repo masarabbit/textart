@@ -83,6 +83,7 @@ function init() {
       // ctx.filter = 'brightness(200)'
       ctx.drawImage(imageTarget, 0, 0, calcWidth, calcHeight)
       shades.length = 0
+      colorsFromImage.length = 0
       
       for (let i = 0; i < row * column; i++) {
         const y = Math.floor(i / row) * cellSize

@@ -1,4 +1,7 @@
 function init() {
+
+  //! rename class for ascii
+  //! refactor css - the one used to extract html seems to be inconsistent
   
   const body = document.querySelector('body')
   const canvas = document.querySelector('canvas')
