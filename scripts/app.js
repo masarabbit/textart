@@ -1,7 +1,8 @@
 function init() {
 
-  //! rename class for ascii
   //! refactor css - the one used to extract html seems to be inconsistent
+  // add option to adjust contrast
+  // add option to tweak line height etc
   
   const body = document.querySelector('body')
   const canvas = document.querySelector('canvas')
@@ -15,6 +16,9 @@ function init() {
   const downloadHtmlLink = document.querySelector('.download_link')
   const downloadTextLink = document.querySelector('.download_text_link')
   const colorToggle = document.querySelector('.color_toggle')
+  const copy = document.querySelector('.copy')
+
+  const textOutput = document.querySelector('.text_output')
 
   let isDarkMode = true
   const shades = []
@@ -59,6 +63,7 @@ function init() {
     
     //■
     '&#9632;'
+    // '&#9606;'
   ]
 
   const rawGradation = ' .,\'"❞–^~+:;!✩*(/{icoIvJDVYSAEZX%&@#$✭❋❖❤✚♣¶❚▲◢◉▣■■'
@@ -99,7 +104,11 @@ function init() {
       canvas.setAttribute('height', calcHeight - (calcHeight % cellSize))
 
       grid.style.height = `${calcHeight - (calcHeight % cellSize)}px`
-      grid.style.width = `${calcWidth}px`
+      // grid.style.width = `${calcWidth}px`
+      
+      //! newly adding
+      textOutput.style.height = `${calcHeight - (calcHeight % cellSize)}px`
+      // textOutput.style.width = `${calcWidth}px`
 
       //* cellX x cellY
       const column = maxWidth / cellSize
@@ -129,9 +138,11 @@ function init() {
 
       //! instead of inline styling, put style into the file.
       grid.innerHTML = rowDatas.map(data=>data.join('')).map(letter=>{
-        return `<p class="ascii">${letter}</p>`
+        return `<p class="textart">${letter}</p>`
         // return `${letter}\n`
       }).join('')
+
+      textOutput.value = processedTexts()
 
       recorddownloadButton()
 
@@ -152,7 +163,7 @@ function init() {
       })
       
       grid.innerHTML = rowDatas.map(data=>data.join('')).map(letter=>{
-        return `<p class="ascii">${letter}</p>`
+        return `<p class="textart">${letter}</p>`
       }).join('')
 
       recorddownloadButton()
@@ -164,7 +175,7 @@ function init() {
     <!doctype html>
     <html>
       <head>
-        <title>ascii artwork :)</title>
+        <title>text art :)</title>
 
         <style media="screen" type="text/css">
           body {
@@ -192,7 +203,7 @@ function init() {
             padding-inline-start: 0px;
           }
 
-          p.ascii {
+          p.textart {
             font-size: 5px;
             letter-spacing: 1px;
             line-height: 4px;
@@ -201,8 +212,6 @@ function init() {
           }
 
           .grid {
-            width: 400px;
-            height: 0px;
             margin: 20px 0;
             font-size: 6.6px;
             line-height: 4px;
@@ -222,7 +231,7 @@ function init() {
     `
     const data = new Blob([text], { type: 'text/html' })
     const url = window.URL.createObjectURL(data)
-    downloadHtmlLink.download = `ascii_art_${new Date().getTime()}.html`
+    downloadHtmlLink.download = `text_art_${new Date().getTime()}.html`
     downloadHtmlLink.href = url
   }
 
@@ -237,7 +246,7 @@ function init() {
   // }
   // // plain = plain.replace(/\n/g, '\\par\n')
 
-  const downloadTextFile = () =>{
+  const processedTexts = () =>{
     const row = (calcHeight - (calcHeight % cellSize)) / cellSize
     const processedRowDatas = new Array(row).fill('').map(()=>[])
 
@@ -245,18 +254,42 @@ function init() {
       // processedRowDatas[Math.floor(i / (maxWidth / cellSize))].push(' ')
       processedRowDatas[Math.floor(i / (maxWidth / cellSize))].push(rawGradation[50 - shade])
     })
-    const processedTexts = processedRowDatas.map(data=>data.join('')).map((letter)=>{
+    return processedRowDatas.map(data=>data.join('')).map((letter)=>{
       return `${letter}\n`
     }).join('')
+  }
 
-    const data = new Blob([processedTexts], { type: 'text/rtf' })
+  const downloadTextFile = () =>{
+    // const row = (calcHeight - (calcHeight % cellSize)) / cellSize
+    // const processedRowDatas = new Array(row).fill('').map(()=>[])
+
+    // shades.forEach((shade,i)=>{
+    //   // processedRowDatas[Math.floor(i / (maxWidth / cellSize))].push(' ')
+    //   processedRowDatas[Math.floor(i / (maxWidth / cellSize))].push(rawGradation[50 - shade])
+    // })
+    // const processedTexts = processedRowDatas.map(data=>data.join('')).map((letter)=>{
+    //   return `${letter}\n`
+    // }).join('')
+    
+    // //! test
+    // textOutput.value = processedTexts()
+
+    const data = new Blob([processedTexts()], { type: 'text/rtf' })
     const url = window.URL.createObjectURL(data)
-    downloadTextLink.download = `ascii_art_${new Date().getTime()}.txt`
+    downloadTextLink.download = `text_art_${new Date().getTime()}.txt`
     downloadTextLink.href = url
     
     downloadWithButton(downloadTextLink)
 
   }
+
+
+  const copyText = box =>{
+    box.select()
+    box.setSelectionRange(0, 99999) // For mobile devices 
+    document.execCommand('copy')
+  }
+  copy.addEventListener('click',()=>copyText(textOutput))
 
 
   outputButton.addEventListener('click', output)
@@ -268,3 +301,30 @@ function init() {
 }
 
 window.addEventListener('DOMContentLoaded', init)
+
+
+
+      //! textart with grid
+      // const cellNo = new Array(row * column).fill('')
+      // grid.innerHTML = cellNo.map((_cell,i)=>{
+      //   return `
+      //     <div 
+      //       class="cell"
+      //     >
+      //       ${gradation[shades[i]]}
+      //     </div>
+      //   `
+      // }).join('')
+
+      //? style="color:${colorsFromImage[i]};"
+      //? style="background-color:${colorsFromImage[i]};"
+
+      // grid.innerHTML = cellNo.reduce((acc,_text,i)=>{
+      //   return ` ${i % row === 0 ? '<p>' : ''}${acc + gradation[shades[i]]}${(i + 1) % row === 0 && i !== 0 ? '</p>' : ''}`
+      // },'')
+
+
+      // grid.innerHTML = cellNo.reduce((acc,_text,i)=>{
+      //   return `${acc + gradation[shades[i]]}${(i + 1) % column === 0 && i !== 0 ? '\n' : ''}`
+      // },'')
+      

@@ -8,6 +8,7 @@ body {
   background-color: black;
   color: white;
   font-family: 'Courier Prime', monospace;
+  /* font-family: 'Roboto Mono', monospace; */
 }
 
 body.light {
@@ -105,6 +106,13 @@ button {
   align-items: center;
 }
 
+.mini_wrap.side {
+  width: 100%;
+  max-width: 700px;
+  justify-content: flex-end;
+  margin: 20px 0 100px 0;
+}
+
 .image_wrapper {
   position: fixed;
   display: none;
@@ -141,38 +149,20 @@ button, label {
   font-size: 14px;
 }
 
-.text_output {
-  width: calc(100% - 60px);
-  max-width: 800px;
-  background-color: white;
-  color: gray;
-  margin: 30px 0 0 0;
-  overflow-wrap: break-word;
-  font-size: 12px;
-}
 
 
 .grid {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
-  width: 400px;
   height: 0px;
   margin: 20px 0 100px 0;
   font-size: 6.6px;
   line-height: 4px;
   word-break: break-all;
+  /* border: hotpink 1px solid; */
 }
 
-/* .cell {
-  position: relative;
-  height: 4px;
-  width: 4px;
-  font-size: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
 
 .cell {
   position: relative;
@@ -209,15 +199,8 @@ p.hidden {
   pointer-events: none;
 }
 
-/* p.ascii {
-  font-size: 5px;
-  letter-spacing: 1px;
-  line-height: 4px;
-  margin: 0;
-  white-space: nowrap;
-} */
 
-p.ascii {
+p.textart {
   font-size: 8px;
   letter-spacing: 1.5px;
   line-height: 5px;
@@ -225,13 +208,19 @@ p.ascii {
   white-space: nowrap;
 }
 
-/* p.ascii {
-  font-size: 12px;
-  letter-spacing: 1px;
+textarea.text_output {
+  font-size: 8px;
+  letter-spacing: 1.5px;
   line-height: 6px;
-  margin: 0;
-  white-space: nowrap;
-} */
+  font-family: 'Courier Prime', monospace;
+  color: black;
+  resize: none;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+}
+
+
 
 
 .switch {
@@ -289,14 +278,14 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-.sq {
+/* .sq {
   position: relative;
-  height: 20px;
-  width: 20px;
+  height: 15px;
+  width: 15px;
 }
 
 .sq img {
   height: 100%;
   width: 100%;
   mix-blend-mode: lighten;
-}
+} */
