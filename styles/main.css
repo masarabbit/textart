@@ -8,7 +8,6 @@ body {
   background-color: black;
   color: white;
   font-family: 'Courier Prime', monospace;
-  /* font-family: 'Roboto Mono', monospace; */
 }
 
 body.light {
@@ -26,14 +25,13 @@ p, h1, h2, h3, h4 {
 }
 
 canvas {
-  margin: 0 auto;
-  background-color: #ffffff;
-  margin: 40px 0 100px 0;
   display: none;
 }
 
 h1 {
-  margin: 30px;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
 }
 
 input,
@@ -48,9 +46,16 @@ button {
   color: #00e8d1;
 }
 input:focus {
-  outline: #00e8d1;
+  border: transparent !important;
+  margin: 1px 0 !important;
+  outline: 4px solid #00e8d1;
 }
 
+textarea:focus {
+  outline: 4px solid #00e8d1;
+}
+
+body.light input,
 body.light button,
 body.light [type="file"]+label {
   background-color: rgb(248, 248, 248);
@@ -65,7 +70,7 @@ body.light button:hover {
   color: white;
 }
 
-
+input,
 button {
   background-color: black;
   border: 1px solid white;
@@ -79,7 +84,25 @@ button:hover {
   color: black;
 }
 
+input.number {
+  /* text-align: left; */
+  width: 70px;
+  padding: 9.5px 15px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 14px;
+}
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 button {
   font-family: 'Courier Prime', monospace;
@@ -88,16 +111,13 @@ button {
 
 .wrapper {
   margin: 0 auto;
-  padding: 50px 0 0 0;
+  padding: 50px 0 100px 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   max-width: 1200px;
-  /* border: red 1px solid; */
-  /* background-color: black;
-  color: white; */
 }
 
 .mini_wrap {
@@ -143,35 +163,8 @@ img {
   cursor: pointer;
 }
 
-
-
 button, label {
   font-size: 14px;
-}
-
-
-
-.grid {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  height: 0px;
-  margin: 20px 0 100px 0;
-  font-size: 6.6px;
-  line-height: 4px;
-  word-break: break-all;
-  /* border: hotpink 1px solid; */
-}
-
-
-.cell {
-  position: relative;
-  height: 10px;
-  width: 10px;
-  font-size: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 body.light button.disabled,
@@ -199,29 +192,29 @@ p.hidden {
   pointer-events: none;
 }
 
-
-p.textart {
-  font-size: 8px;
-  letter-spacing: 1.5px;
-  line-height: 5px;
-  margin: 0;
-  white-space: nowrap;
-}
-
 textarea.text_output {
+  font-family: 'Courier Prime', monospace;
+  /* font-size: 9px;
+  letter-spacing: 1.5px;
+  line-height: 6.7px; */
+
   font-size: 8px;
   letter-spacing: 1.5px;
   line-height: 6px;
-  font-family: 'Courier Prime', monospace;
-  color: black;
+
+  width: calc(100% - 40px);
+  background-color: black;
+  color: white;
   resize: none;
   overflow: hidden;
-  width: 100%;
   text-align: center;
+  border: 0px;
 }
 
-
-
+body.light textarea.text_output {
+  background-color: rgb(248, 248, 248);
+  color: black;
+}
 
 .switch {
   position: relative;
@@ -246,7 +239,6 @@ textarea.text_output {
   background-color: black;
   border: white 1px solid;
   transition: 0.4s;
-  border-radius: 34px;
 }
 
 .slider:before {
@@ -258,7 +250,6 @@ textarea.text_output {
   bottom: 4px;
   background-color: white;
   transition: 0.4s;
-  border-radius: 50%;
 }
 
 input:checked + .slider {
@@ -278,14 +269,48 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* .sq {
-  position: relative;
-  height: 15px;
-  width: 15px;
+.input_wrap {
+  display: flex;
+  flex-direction: column;
+  margin: -15px 5px 0 5px;
 }
 
-.sq img {
-  height: 100%;
-  width: 100%;
-  mix-blend-mode: lighten;
-} */
+.input_wrap label {
+  border: 0;
+  font-size: 13px;
+  height: 15px;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  width: 0px;
+}
+
+.input_wrap input {
+  margin: 0;
+}
+
+.spacer {
+  width: 10px;
+}
+
+.sign {
+  position: relative;
+  color: white;
+  font-size: 10px;
+  padding: 0 10px 10px 0;
+  text-align: right;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+body.light .sign,
+body.light a {
+  color: black;
+}
