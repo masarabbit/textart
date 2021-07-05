@@ -60,14 +60,18 @@ function init() {
       calcWidth = calcHeight * (iWidth / iHeight)
       canvas.setAttribute('width', calcWidth)
       canvas.setAttribute('height', calcHeight - (calcHeight % cellSize))
-      textOutput.style.height = `${calcHeight - (calcHeight % cellSize)}px`
 
       const column = maxWidth / cellSize
       const row = (calcHeight - (calcHeight % cellSize)) / cellSize
-      ctx.filter = `brightness(${brightness.value}%) contrast(${contrast.value}%)`
 
+
+      // ctx.filter = `brightness(${brightness.value}%) contrast(${contrast.value}%)`
       ctx.drawImage(imageTarget, 0, 0, calcWidth, calcHeight)
       if (update) imgDataURL = canvas.toDataURL()
+      ctx.filter = `brightness(${brightness.value}%) contrast(${contrast.value}%)`
+      ctx.drawImage(imageTarget, 0, 0, calcWidth, calcHeight)
+
+
       shades.length = 0
       
       for (let i = 0; i < row * column; i++) {
@@ -78,15 +82,15 @@ function init() {
         shades.push(shade)
       }
       textOutput.value = processedTexts()
+      textOutput.style.height = `${textOutput.scrollHeight}px`
     }
     imageTarget.src = dataURL
   }
-
+  
+  
   const isValidFile = file =>{
-    return !!(file.split('.')[1].toLowerCase() === 'jpg' ||
-              file.split('.')[1].toLowerCase() === 'jpeg' ||
-              file.split('.')[1].toLowerCase() === 'png' ||
-              file.split('.')[1].toLowerCase() === 'gif')
+    const fileTypes = ['jpg','jpeg','png','gif']
+    return fileTypes.filter(type=>file.split('.')[1].toLowerCase() === type).length
   }
 
   uploadFile.addEventListener('change',()=>{
@@ -109,6 +113,7 @@ function init() {
     body.classList.toggle('light')
     if (!calcHeight) return
     textOutput.value = processedTexts()
+    textOutput.style.height = `${textOutput.scrollHeight}px`
   }
 
   const copyText = box =>{
@@ -141,6 +146,11 @@ function init() {
     setting.addEventListener('change',()=>{
       drawImageAndRecordShades(imgDataURL,false)
     })
+  })
+
+  textOutput.addEventListener('change',()=>{
+    textOutput.style.height = '5px'
+    textOutput.style.height = `${textOutput.scrollHeight}px`
   })
 
   drawImageAndRecordShades(imgDataURL,false)

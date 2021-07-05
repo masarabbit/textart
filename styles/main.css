@@ -194,13 +194,18 @@ p.hidden {
 
 textarea.text_output {
   font-family: 'Courier Prime', monospace;
-  /* font-size: 9px;
-  letter-spacing: 1.5px;
-  line-height: 6.7px; */
 
-  font-size: 8px;
+  /* font-size: 12px;
   letter-spacing: 1.5px;
-  line-height: 6px;
+  line-height: 8px; */
+
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  line-height: 7px;
+
+  /* font-size: 8px;
+  letter-spacing: 1.5px;
+  line-height: 6px; */
 
   width: calc(100% - 40px);
   background-color: black;
