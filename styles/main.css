@@ -43,16 +43,16 @@ button {
 }
 
 ::placeholder {
-  color: #00e8d1;
+  color: #93f7ed;
 }
 input:focus {
   border: transparent !important;
   margin: 1px 0 !important;
-  outline: 4px solid #00e8d1;
+  outline: 4px solid #93f7ed;
 }
 
 textarea:focus {
-  outline: 4px solid #00e8d1;
+  outline: 4px solid #93f7ed;
 }
 
 body.light input,
@@ -194,19 +194,6 @@ p.hidden {
 
 textarea.text_output {
   font-family: 'Courier Prime', monospace;
-
-  /* font-size: 12px;
-  letter-spacing: 1.5px;
-  line-height: 8px; */
-
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  line-height: 7px;
-
-  /* font-size: 8px;
-  letter-spacing: 1.5px;
-  line-height: 6px; */
-
   width: calc(100% - 40px);
   background-color: black;
   color: white;
@@ -214,6 +201,30 @@ textarea.text_output {
   overflow: hidden;
   text-align: center;
   border: 0px;
+}
+
+textarea.text_output.xs {
+  font-size: 3.5px;
+  letter-spacing: 0px;
+  line-height: 2px;
+}
+
+textarea.text_output.sm {
+  font-size: 5px;
+  letter-spacing: 1px;
+  line-height: 4px;
+}
+
+textarea.text_output.md {
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  line-height: 6px;
+}
+
+textarea.text_output.lg {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  line-height: 7px;
 }
 
 body.light textarea.text_output {
@@ -259,7 +270,7 @@ body.light textarea.text_output {
 
 input:checked + .slider {
   background-color: rgb(248, 248, 248);
-  border: black 1px solid;
+  border: black 1px solid; 
 }
 
 input:checked + .slider:before {
@@ -272,6 +283,11 @@ input:focus + .slider {
 
 input:checked + .slider:before {
   transform: translateX(26px);
+}
+
+input:checked + .slider:hover, 
+.slider:hover {
+  background-color: #93f7ed;
 }
 
 .input_wrap {
@@ -319,3 +335,87 @@ body.light .sign,
 body.light a {
   color: black;
 }
+
+
+
+.radio_container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+input:checked ~ .radio .circle{
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  animation: select_animation forwards 0.3s;
+}
+
+body.light input:checked ~ .radio .circle {
+  background: white;
+}
+
+input:checked ~ .radio .circle {
+  background: rgb(0, 0, 0);
+}
+
+.radio_container input {
+  position: absolute;
+  cursor: pointer;
+  opacity: 0;
+  height: 0px;
+  width: 0px;
+}
+
+body.light input:checked ~ .radio,
+body.light .radio {
+  background-color: black;
+}
+
+input:checked ~ .radio,
+.radio {
+  background-color: white;
+}
+
+.radio {
+  transition: 0.2s;
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.radio .circle {
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  transition: 0.3s;
+  transform-origin: center;
+}
+
+@keyframes select_animation {
+  0% {
+    width: 0px;
+    height: 0px;
+  }
+  80% {
+    width: 18px;
+    height: 18px;
+  }
+  100% {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.radio_container:hover input ~ .radio{
+  background-color: #93f7ed;
+}
+
+label.radio_container {
+  text-align: center;
+  margin: 0 18px 0 5px;
+}  
