@@ -98,8 +98,8 @@ function init() {
         const c = ctx.getImageData(x + 2, y + 2, 1, 1).data
         const shade = calcShade(c[0],c[1],c[2])
         c[3] === 0
-        ? shades.push(49)
-        : shades.push(shade)
+          ? shades.push(49)
+          : shades.push(shade)
       }
       textOutput.value = processedTexts()
       textOutput.style.height = '0px'
