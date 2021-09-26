@@ -58,7 +58,7 @@ button {
 }
 input:focus {
   border: transparent !important;
-  margin: 1px 0 !important;
+  margin: 1px !important;
   outline: 4px solid #93f7ed;
 }
 
