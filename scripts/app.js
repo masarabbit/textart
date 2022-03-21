@@ -50,32 +50,21 @@ function init() {
 
   const processedTexts = () =>{
     const row = (calcHeight - (calcHeight % cellSize)) / cellSize
-    const processedRowDatas = new Array(row).fill('').map(()=>[])
+    const processedRowDatas = new Array(row).fill('').map(()=> [])
     shades.forEach((shade,i)=>{
       const index = isDarkMode ? shade : 49 - shade
       processedRowDatas[Math.floor(i / (maxWidth / cellSize))].push(gradation[index])
     })
-    return processedRowDatas.map(data=>data.join('')).map((letter)=>{
-      return `${letter}\n`
-    }).join('')
+    return processedRowDatas.map(data => data.join('')).map(letter =>`${letter}\n`).join('')
   }
 
-  const calcShade = (r,g,b)=>{
-    return Math.round(((r + g + b) / 3) / 255 * 49) // white on black
-  }
+  const calcShade = (r, g, b) => Math.round(((r + g + b) / 3) / 255 * 49) // white on black
 
-  const hideMessage = () =>{
-    p.classList.add('hidden')
-  }
-
-  const drawImageAndRecordShades = (dataURL,update) =>{
+  const drawImageAndRecordShades = ({ dataURL, update }) =>{
     const imageTarget = new Image()    
-    let iHeight
-    let iWidth
 
     imageTarget.onload = () => {
-      iWidth = imageTarget.naturalWidth 
-      iHeight = imageTarget.naturalHeight 
+      const { naturalWidth: iWidth, naturalHeight: iHeight } = imageTarget
       calcHeight = maxWidth * (iHeight / iWidth)
       calcWidth = calcHeight * (iWidth / iHeight)
       canvas.setAttribute('width', calcWidth)
@@ -84,34 +73,29 @@ function init() {
       const column = maxWidth / cellSize
       const row = (calcHeight - (calcHeight % cellSize)) / cellSize
 
-      ctx.drawImage(imageTarget, 0, 0, calcWidth, calcHeight)
       if (update) imgDataURL = canvas.toDataURL()
       ctx.filter = `brightness(${brightness.value}%) contrast(${contrast.value}%)`
       ctx.drawImage(imageTarget, 0, 0, calcWidth, calcHeight)
 
-
       shades.length = 0
       
-      for (let i = 0; i < row * column; i++) {
+      new Array(row * column).fill('').forEach((_a, i)=>{
         const y = Math.floor(i / column) * cellSize
         const x = i % column * cellSize
         const c = ctx.getImageData(x + 2, y + 2, 1, 1).data
-        const shade = calcShade(c[0],c[1],c[2])
+        const shade = calcShade(c[0], c[1], c[2])
         c[3] === 0
-        ? shades.push(49)
-        : shades.push(shade)
-      }
+          ? shades.push(49)
+          : shades.push(shade)
+      })
       textOutput.value = processedTexts()
-      textOutput.style.height = '0px'
-      textOutput.style.height = `${textOutput.scrollHeight}px`
+      textOutput.style.height = textOutput.scrollHeight ? `${textOutput.scrollHeight}px` : '0px'
     }
     imageTarget.src = dataURL
   }
   
-  
   const isValidFile = file =>{
-    const fileTypes = ['jpg','jpeg','png','gif']
-    return fileTypes.filter(type=>file.split('.')[1].toLowerCase() === type).length
+    return ['jpg','jpeg','png','gif'].some(type => file.split('.')[1].toLowerCase() === type)
   }
 
   uploadFile.addEventListener('change',()=>{
@@ -120,21 +104,22 @@ function init() {
   })
 
   const output = () =>{
-    if (!uploadedFile) {
+    if (uploadedFile) {
+      p.classList.add('hidden')
+      const blobURL = window.URL.createObjectURL(uploadedFile)
+      drawImageAndRecordShades({ dataURL:blobURL, update:true })
+    } else {
       p.classList.remove('hidden')
-      return
     }
-    p.classList.add('hidden')
-    const blobURL = window.URL.createObjectURL(uploadedFile)
-    drawImageAndRecordShades(blobURL,true)
   }
   
   const toggleColor = () =>{
     isDarkMode = !isDarkMode
     body.classList.toggle('light')
-    if (!calcHeight) return
-    textOutput.value = processedTexts()
-    textOutput.style.height = `${textOutput.scrollHeight}px`
+    if (calcHeight) {
+      textOutput.value = processedTexts()
+      textOutput.style.height = `${textOutput.scrollHeight}px`
+    }
   }
 
   const copyText = box =>{
@@ -144,9 +129,9 @@ function init() {
   }
 
   // event
-  copy.addEventListener('click',()=>copyText(textOutput))
+  copy.addEventListener('click',()=> copyText(textOutput))
   outputButton.addEventListener('click', output)
-  label.addEventListener('click', hideMessage)
+  label.addEventListener('click', ()=> p.classList.add('hidden'))
   colorToggle.addEventListener('change', toggleColor)
 
   plusMinus.forEach(button=>{
@@ -159,32 +144,26 @@ function init() {
         brightness.value = +brightness.value + +e.target.dataset.no * 10
         brightness.value = +brightness.value < 0 ? 0 : brightness.value
       }
-      if (imgDataURL) drawImageAndRecordShades(imgDataURL,false)
+      if (imgDataURL) drawImageAndRecordShades({ dataURL: imgDataURL })
     })
   })
 
-  settings.forEach(setting=>{
-    setting.addEventListener('change',()=>{
-      drawImageAndRecordShades(imgDataURL,false)
-    })
-  })
+  settings.forEach(setting => setting.addEventListener('change',()=> drawImageAndRecordShades({ dataURL: imgDataURL })))
 
-  textOutput.addEventListener('change',()=>{
-    textOutput.style.height = '5px'
-    textOutput.style.height = `${textOutput.scrollHeight}px`
-  })
+  textOutput.addEventListener('change', ()=> 
+    textOutput.style.height = textOutput.scrollHeight ? `${textOutput.scrollHeight}px` : '5px')
 
-  radioInputs.forEach(radioInput=>{
-    radioInput.addEventListener('change',(e)=>{
+  radioInputs.forEach(radioInput =>{
+    radioInput.addEventListener('change',e =>{
       size = e.target.value
       maxWidth = size_stat[size].maxWidth
       cellSize = size_stat[size].cellSize
       textOutput.className = `text_output ${size}`
-      drawImageAndRecordShades(imgDataURL,false)
+      drawImageAndRecordShades({ dataURL: imgDataURL })
     })
   })
 
-  drawImageAndRecordShades(imgDataURL,false)
+  drawImageAndRecordShades({ dataURL: imgDataURL })
 }
 
 window.addEventListener('DOMContentLoaded', init)
