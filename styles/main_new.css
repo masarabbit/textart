@@ -206,7 +206,7 @@ p.hidden {
   pointer-events: none;
 }
 
-textarea.text_output {
+textarea {
   font-family: 'Courier Prime', monospace;
   width: calc(100% - 40px);
   background-color: black;
@@ -217,31 +217,31 @@ textarea.text_output {
   border: 0px;
 }
 
-textarea.text_output.xs {
+textarea.xs {
   font-size: 3.5px;
   letter-spacing: 0px;
   line-height: 2px;
 }
 
-textarea.text_output.sm {
+textarea.sm {
   font-size: 5px;
-  letter-spacing: 1px;
-  line-height: 4px;
+  letter-spacing: 0px;
+  line-height: 3px;
 }
 
-textarea.text_output.md {
+textarea.md {
   font-size: 8px;
   letter-spacing: 1.5px;
   line-height: 6px;
 }
 
-textarea.text_output.lg {
+textarea.lg {
   font-size: 10px;
   letter-spacing: 1.5px;
   line-height: 7px;
 }
 
-body.light textarea.text_output {
+body.light textarea {
   background-color: rgb(248, 248, 248);
   color: black;
 }
@@ -460,4 +460,13 @@ button.plus_minus:hover {
   margin: 0 0 0 auto;
   display: flex;
   align-items: center;
+}
+
+.indicator {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  height: 20px;
+  width: 700px;
+  border: 1px solid hotpink;
 }
