@@ -17,84 +17,93 @@
 <body class="light">
 
   <div class="wrapper">
+    <nav>
+      <h1>text art converter</h1>
 
-    <h1>text art converter (^ _ ^)</h1>
+      <div class="controls">
+        <div class="input_wrap">
+          <label>contrast:</label>
+          <input class="contrast number" type="number" min="0" max="100" value="100">
+        </div>
+        <div class="plus_minus_wrapper">
+          <button class="plus_minus" data-setting="contrast" data-no='1'>+</button>
+          <button class="plus_minus" data-setting="contrast" data-no='-1'>-</button>
+        </div>
+        
+  
+        <div class="spacer"></div>
+        
+        <div class="input_wrap">
+          <label>brightness:</label>
+          <input class="brightness number" type="number" min="0" max="100" value="100">
+        </div>
+        <div class="plus_minus_wrapper">
+          <button class="plus_minus" data-setting="brightness" data-no='1'>+</button>
+          <button class="plus_minus" data-setting="brightness" data-no='-1'>-</button>
+        </div>
+      </div>
+      
 
-    <canvas></canvas>
-    
-    <div class="mini_wrap">
-      <input id="upload_file" type="file" placeholder="upload file" single>
-      <label for="upload_file">select img file</label>
-      <div class="name_output"></div>
-      <button class="output">output</button>
       <label class="switch">
         <input class="color_toggle" type="checkbox">
         <span class="slider round"></span>
       </label>
-    </div>
+    </nav>
+
+  
+
+    <canvas></canvas>
+    
     <p class="info hidden">&#60; please select an image file &#62;</p>
 
     <textarea class="text_output md" spellcheck="false"></textarea>
 
     <div class="mini_wrap">
-      <div class="input_wrap">
-        <label>contrast</label>
-        <input class="contrast number" type="number" min="0" max="100" value="100">
+      <div class="size_inputs">
+        xs
+        <label class="radio_container">  
+          <input class="radio_input" type="radio" name="size" value="xs"/>
+          <div class="radio">
+            <div class="circle"></div>
+          </div>  
+        </label>
+  
+        sm
+        <label class="radio_container">
+          <input class="radio_input" type="radio" name="size" value="sm"/>
+          <div class="radio">
+            <div class="circle"></div>
+          </div>  
+        </label>
+        
+        md
+        <label class="radio_container">  
+          <input 
+            class="radio_input"
+            type="radio" name="size" value="md"
+            checked="checked"
+          />
+          <div class="radio">
+            <div class="circle"></div>
+          </div>  
+        </label>
+  
+        lg
+        <label class="radio_container">  
+          <input class="radio_input" type="radio" name="size" value="lg"/>
+          <div class="radio">
+            <div class="circle"></div>
+          </div>  
+        </label>
       </div>
-      <button class="plus_minus" data-setting="contrast" data-no='1'>+</button>
-      <button class="plus_minus" data-setting="contrast" data-no='-1'>-</button>
-
-      <div class="spacer"></div>
       
-      <div class="input_wrap">
-        <label>brightness</label>
-        <input class="brightness number" type="number" min="0" max="100" value="100">
+      <div class="right">
+        <input id="upload_file" type="file" placeholder="upload file" single>
+        <label for="upload_file">upload image</label>
+        <button class="output">output</button>
+        <button class="copy">copy</button>
       </div>
-      <button class="plus_minus" data-setting="brightness" data-no='1'>+</button>
-      <button class="plus_minus" data-setting="brightness" data-no='-1'>-</button>
-
-      <div class="spacer"></div>
-
-      <button class="copy">copy</button>
-    </div>
-
-    <div class="mini_wrap">
-      xs
-      <label class="radio_container">  
-        <input class="radio_input" type="radio" name="size" value="xs"/>
-        <div class="radio">
-          <div class="circle"></div>
-        </div>  
-      </label>
-
-      sm
-      <label class="radio_container">
-        <input class="radio_input" type="radio" name="size" value="sm"/>
-        <div class="radio">
-          <div class="circle"></div>
-        </div>  
-      </label>
-      
-      md
-      <label class="radio_container">  
-        <input 
-          class="radio_input"
-          type="radio" name="size" value="md"
-          checked="checked"
-        />
-        <div class="radio">
-          <div class="circle"></div>
-        </div>  
-      </label>
-
-      lg
-      <label class="radio_container">  
-        <input class="radio_input" type="radio" name="size" value="lg"/>
-        <div class="radio">
-          <div class="circle"></div>
-        </div>  
-      </label>
-
+      <div class="name_output"></div>
     </div>
   </div>
 
