@@ -19,31 +19,7 @@
   <div class="wrapper">
     <nav>
       <h1>text art converter</h1>
-
-      <div class="controls">
-        <div class="input_wrap">
-          <label>contrast:</label>
-          <input class="contrast number" type="number" min="0" max="100" value="100">
-        </div>
-        <div class="plus_minus_wrapper">
-          <button class="plus_minus" data-setting="contrast" data-no='1'>+</button>
-          <button class="plus_minus" data-setting="contrast" data-no='-1'>-</button>
-        </div>
-        
-  
-        <div class="spacer"></div>
-        
-        <div class="input_wrap">
-          <label>brightness:</label>
-          <input class="brightness number" type="number" min="0" max="100" value="100">
-        </div>
-        <div class="plus_minus_wrapper">
-          <button class="plus_minus" data-setting="brightness" data-no='1'>+</button>
-          <button class="plus_minus" data-setting="brightness" data-no='-1'>-</button>
-        </div>
-      </div>
       
-
       <label class="switch">
         <input class="color_toggle" type="checkbox">
         <span class="slider round"></span>
@@ -96,6 +72,26 @@
           </div>  
         </label>
       </div>
+
+      <div class="controls">
+        <div class="input_wrap">
+          <label>contrast:</label>
+          <input class="contrast number" type="number" min="0" max="100" value="100">
+        </div>
+        <div class="plus_minus_wrapper">
+          <button class="plus_minus" data-setting="contrast" data-no='1'>+</button>
+          <button class="plus_minus" data-setting="contrast" data-no='-1'>-</button>
+        </div>
+        
+        <div class="input_wrap">
+          <label>brightness:</label>
+          <input class="brightness number" type="number" min="0" max="100" value="100">
+        </div>
+        <div class="plus_minus_wrapper">
+          <button class="plus_minus" data-setting="brightness" data-no='1'>+</button>
+          <button class="plus_minus" data-setting="brightness" data-no='-1'>-</button>
+        </div>
+      </div>
       
       <div class="right">
         <input id="upload_file" type="file" placeholder="upload file" single>
@@ -103,8 +99,8 @@
         <button class="output">output</button>
         <button class="copy">copy</button>
       </div>
-      <div class="name_output"></div>
     </div>
+    <div class="name_output"></div>
   </div>
 
   <div class="sign">
