@@ -7,7 +7,7 @@ body {
   padding: 0;
   background-color: black;
   color: white;
-  font-family: 'Courier Prime', monospace;
+  font-family: monospace;
 }
 
 body.light {
