@@ -7,7 +7,7 @@ body {
   padding: 0;
   background-color: black;
   color: white;
-  font-family: monospace;
+  font-family: 'Courier Prime', monospace;
 }
 
 body.light {
@@ -82,6 +82,7 @@ body.light button:hover {
 
 input,
 button {
+  font-family: 'Courier Prime', monospace;
   background-color: black;
   border: 1px solid white;
   color: white;
@@ -455,7 +456,7 @@ button.plus_minus:hover {
   }
 
   textarea {
-    font-family: monospace;
+    font-family: 'Courier Prime', monospace;
     width: calc(100% - 40px);
     background-color: black;
     color: white;
