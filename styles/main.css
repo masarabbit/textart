@@ -291,7 +291,6 @@ input:checked + .slider:hover,
   font-size: 14px;
   padding-top: 8px 7px 4px 7px;
   text-align: left;
-  /* width: 0px; */
 }
 
 .input_wrap input {
