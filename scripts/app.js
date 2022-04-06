@@ -17,7 +17,8 @@ function init() {
   const uploadFile = document.querySelector('#upload_file')
   const radioInputs = document.querySelectorAll('.radio_input')
 
-  const gradation = ' .,\'"❞–^~+:;!✩*(/{icoIvJDVYSAEZX%&@#$✭❋❖❤✚♣¶❚▲◢◉▣■'
+  // const gradation = ' .,\'"❞–^~+:;!✩*(/{icoIvJDVYSAEZX%&@#$✭❋❖❤✚♣¶❚▲◢◉▣■'
+  const gradation = ' .,\`\'"–^~+:;!?>*(/{ilconmvsILJODVYSAZKXFEGHBM%&@#$'
   const shades = []
   const size_stat = {
     xs: {
