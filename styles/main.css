@@ -82,6 +82,7 @@ body.light button:hover {
 
 input,
 button {
+  font-family: 'Courier Prime', monospace;
   background-color: black;
   border: 1px solid white;
   color: white;
