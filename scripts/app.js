@@ -22,19 +22,19 @@ function init() {
   const size_stat = {
     xs: {
       cellD: 3,
-      ratio: 0.01
+      ratio: 1.4
     },
     sm: {
       cellD: 4,
-      ratio: 0.05
+      ratio: 1.3
     },
     md: {
       cellD: 8,
-      ratio: 2,
+      ratio: 1.25,
     },
     lg: {
       cellD: 8,
-      ratio: 9.3
+      ratio: 1.25
     }
   }
   
@@ -131,10 +131,19 @@ function init() {
     document.execCommand('copy')
   }
 
+  const updateImageDataAndDraw = size => {
+    imgData.ratio = size_stat[size].ratio
+    imgData.cellD = size_stat[size].cellD
+    imgData.maxWidth = (Math.round(textOutput.getBoundingClientRect().width - 10) * imgData.ratio)
+    textOutput.className = `${size}`
+    drawImageAndRecordShades({ dataURL: imgData.imgDataURL })
+  }
+
   gradationInput.value = gradation
   document.querySelectorAll('.number').forEach(setting => setting.addEventListener('change',()=> drawImageAndRecordShades({ dataURL: imgDataURL })))
-  drawImageAndRecordShades({ dataURL: imgData.imgDataURL })
-  imgData.maxWidth = textOutput.getBoundingClientRect().width - 10
+  // drawImageAndRecordShades({ dataURL: imgData.imgDataURL })
+  // imgData.maxWidth = Math.round(textOutput.getBoundingClientRect().width - 10) * imgData.ratio
+  updateImageDataAndDraw(imgData.size)
 
 
 
@@ -164,7 +173,7 @@ function init() {
   })
 
   const updateTextImage = () =>{
-    imgData.maxWidth = Math.round(textOutput.getBoundingClientRect().width - 10 * imgData.ratio)
+    imgData.maxWidth = Math.round(textOutput.getBoundingClientRect().width - 10) * imgData.ratio
     drawImageAndRecordShades({ dataURL: imgData.imgDataURL })
   }
 
@@ -177,11 +186,7 @@ function init() {
     radioInput.addEventListener('change', e => {
       imgData.size = e.target.value
       const { size } = imgData
-      imgData.ratio = size_stat[size].ratio
-      imgData.cellD = size_stat[size].cellD
-      imgData.maxWidth = Math.round(textOutput.getBoundingClientRect().width - 10 * imgData.ratio)
-      textOutput.className = `${size}`
-      drawImageAndRecordShades({ dataURL: imgData.imgDataURL })
+      updateImageDataAndDraw(imgData.size)
     })
   })
 
