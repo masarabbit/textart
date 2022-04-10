@@ -10,10 +10,11 @@ function init() {
   const textOutput = document.querySelector('textarea')
   const uploadFile = document.querySelector('#upload_file')
   const gradationInput = document.querySelector('.gradation')
+  const radioInputs = document.querySelectorAll('.radio_input')
 
   // const gradation = ' .,\'"❞–^~+:;!✩*(/{icoIvJDVYSAEZX%&@#$✭❋❖❤✚♣¶❚▲◢◉▣■'
-  // check other glyphs in font book
-  let gradation = ' .,\`\'"–^~+:;!?*(/icmvILJYAXEGBMÆ%£&@#$'
+  const defaultGradation = ' .,\`\'"–^~+:;!?*(/icmvILJYAXEGBMÆ%£&@#$'
+  let gradation = defaultGradation
   const numberOfLetters = () => gradation.length - 1
   const shades = []
 
@@ -34,7 +35,7 @@ function init() {
     },
     lg: {
       cellD: 8,
-      ratio: 1.25
+      ratio: 1.05,
     }
   }
   
@@ -141,11 +142,7 @@ function init() {
 
   gradationInput.value = gradation
   document.querySelectorAll('.number').forEach(setting => setting.addEventListener('change',()=> drawImageAndRecordShades({ dataURL: imgDataURL })))
-  // drawImageAndRecordShades({ dataURL: imgData.imgDataURL })
-  // imgData.maxWidth = Math.round(textOutput.getBoundingClientRect().width - 10) * imgData.ratio
   updateImageDataAndDraw(imgData.size)
-
-
 
   // event
   uploadFile.addEventListener('change',()=>{
@@ -182,10 +179,9 @@ function init() {
     textOutput.style.height = `${textOutput.scrollHeight}px`
   })
 
-  document.querySelectorAll('.radio_input').forEach(radioInput =>{
+  radioInputs.forEach(radioInput =>{
     radioInput.addEventListener('change', e => {
       imgData.size = e.target.value
-      const { size } = imgData
       updateImageDataAndDraw(imgData.size)
     })
   })
@@ -196,7 +192,18 @@ function init() {
     gradation = e.target.value
     updateTextImage()
   })
-
+  
+  document.querySelector('.reset').addEventListener('click', ()=>{
+    gradationInput.value = defaultGradation
+    gradation = defaultGradation
+    contrast.value = 100
+    brightness.value = 100
+    imgData.size = 'md'
+    radioInputs.forEach(input =>{
+      input.checked = input.value === imgData.size
+    })
+    updateImageDataAndDraw(imgData.size)
+  })
 }
 
 window.addEventListener('DOMContentLoaded', init)
