@@ -11,6 +11,7 @@ function init() {
   const uploadFile = document.querySelector('#upload_file')
   const gradationInput = document.querySelector('.gradation')
   const radioInputs = document.querySelectorAll('.radio_input')
+  const switchLabel = document.querySelector('.switch_label')
 
   // const gradation = ' .,\'"❞–^~+:;!✩*(/{icoIvJDVYSAEZX%&@#$✭❋❖❤✚♣¶❚▲◢◉▣■'
   const defaultGradation = ' .,\`\'"–^~+:;!?*(/icmvILJYAXEGBMÆ%£&@#$'
@@ -119,6 +120,7 @@ function init() {
   const toggleColor = () =>{
     imgData.isDarkMode = !imgData.isDarkMode
     body.classList.toggle('light')
+    switchLabel.innerHTML = imgData.isDarkMode ? 'dark mode:' : 'light mode:'
     const { column, row } = imgData
     if (column) {
       textOutput.value = processedTexts({ column, row })
