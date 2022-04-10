@@ -24,19 +24,19 @@ function init() {
   const size_stat = {
     xs: {
       cellD: 3,
-      ratio: 1.4
+      ratio: 1.3
     },
     sm: {
       cellD: 4,
-      ratio: 1.3
+      ratio: 1.35
     },
     md: {
       cellD: 8,
-      ratio: 1.25,
+      ratio: 1.3,
     },
     lg: {
       cellD: 8,
-      ratio: 1.05,
+      ratio: 1.1,
     }
   }
   
@@ -137,7 +137,7 @@ function init() {
   const updateImageDataAndDraw = size => {
     imgData.ratio = size_stat[size].ratio
     imgData.cellD = size_stat[size].cellD
-    imgData.maxWidth = (Math.round(textOutput.getBoundingClientRect().width - 10) * imgData.ratio)
+    imgData.maxWidth = (Math.round(textOutput.getBoundingClientRect().width - 20) * imgData.ratio)
     textOutput.className = `${size}`
     drawImageAndRecordShades({ dataURL: imgData.imgDataURL })
   }
@@ -145,6 +145,8 @@ function init() {
   gradationInput.value = gradation
   document.querySelectorAll('.number').forEach(setting => setting.addEventListener('change',()=> drawImageAndRecordShades({ dataURL: imgDataURL })))
   updateImageDataAndDraw(imgData.size)
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+  if (isSafari) textOutput.style.textAlign = 'left'
 
   // event
   uploadFile.addEventListener('change',()=>{

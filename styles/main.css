@@ -193,9 +193,6 @@ p.hidden {
   opacity: 0;
   pointer-events: none;
 }
-/* textarea {
-  font-weight: 600 !important;
-} */
 
 textarea.xs {
   font-size: 3.5px;
@@ -469,13 +466,15 @@ button.plus_minus:hover {
 
   textarea {
     font-family: 'Courier', monospace;
-    width: 100%;
+    width: calc(100% - 10px);
     background-color: black;
     color: white;
     resize: none;
     overflow: hidden;
     text-align: center;
-    border: 0px;
+    text-align: -webkit-center;
+    padding: 0;
+    border: 0;
     margin-top: 40px;
   }
 
