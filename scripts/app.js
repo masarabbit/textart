@@ -13,7 +13,6 @@ function init() {
   const radioInputs = document.querySelectorAll('.radio_input')
   const switchLabel = document.querySelector('.switch_label')
 
-  // const gradation = ' .,\'"❞–^~+:;!✩*(/{icoIvJDVYSAEZX%&@#$✭❋❖❤✚♣¶❚▲◢◉▣■'
   const defaultGradation = ' .,\`\'"–^~+:;!?*(/icmvILJYAXEGBMÆ%£&@#$'
   let gradation = defaultGradation
   const numberOfLetters = () => gradation.length - 1
@@ -61,7 +60,8 @@ function init() {
       const index = imgData.isDarkMode ? shade : numberOfLetters() - shade
       processedRowDatas[Math.floor(i / column)]?.push(gradation[index])
     })
-    return processedRowDatas.map(data => data.join('')).map(letter =>`${letter}\n`).join('')
+    // TODO remove the filter to make it more dense
+    return processedRowDatas.map(data => data.join('')).map(letter =>`${letter}\n`).filter((_l, i) => i % 2 === 0).join('')
   }
 
   const nearestN = (n, denom) => n === 0 ? 0 : (n - 1) + Math.abs(((n - 1) % denom) - denom)
@@ -208,6 +208,22 @@ function init() {
     })
     updateImageDataAndDraw(imgData.size)
   })
+
+  const downloadTextLink = document.querySelector('.download_text_link')
+  const downloadButton = document.querySelector('.download')
+  // const prefix = `{\rtf1\ansi\ansicpg1252\cocoartf2580
+  //   \cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;}
+  //   {\colortbl;\red255\green255\blue255;}
+  //   \f0\fs10 \cf0`
+  const downloadTextFile = () =>{
+    const data = new Blob([textOutput.value], { type: 'text/rtf' })
+    const url = window.URL.createObjectURL(data)
+    downloadTextLink.download = `ascii_art_${new Date().getTime()}.txt`
+    downloadTextLink.href = url
+    downloadTextLink.click()
+  }
+
+  downloadButton.addEventListener('click', downloadTextFile)
 
   // const testUrl = [
   //   '', ''

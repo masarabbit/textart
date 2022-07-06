@@ -203,19 +203,19 @@ textarea.xs {
 textarea.sm {
   font-size: 5px;
   letter-spacing: 0px;
-  line-height: 3px;
+  /* line-height: 3px; */
 }
 
 textarea.md {
   font-size: 8px;
   letter-spacing: 1.5px;
-  line-height: 6px;
+  /* line-height: 6px; */
 }
 
 textarea.lg {
   font-size: 10px;
   letter-spacing: 1.5px;
-  line-height: 7px;
+  /* line-height: 7px; */
 }
 
 body.light textarea {
