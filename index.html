@@ -28,17 +28,13 @@
     
     <p class="info hidden">&#60; please select an image file &#62;</p>
 
-    <textarea class="text_output md" spellcheck="false"></textarea>
+    <!-- <textarea class="text_output md" spellcheck="false"></textarea> -->
 
     <div class="mini_wrap">
       <div class="size_inputs">
-        <!-- xs
-        <label class="radio_container">  
-          <input class="radio_input" type="radio" name="size" value="xs"/>
-          <div class="radio">
-            <div class="circle"></div>
-          </div>  
-        </label> -->
+        <!-- <button class="size icon" data-size="sm">sm</button>
+        <button class="size icon" data-size="md">md</button>
+        <button class="size icon" data-size="lg">lg</button> -->
   
         sm
         <label class="radio_container">
@@ -87,22 +83,24 @@
           <button class="plus_minus" data-setting="brightness" data-no='1'>+</button>
           <button class="plus_minus" data-setting="brightness" data-no='-1'>-</button>
         </div>
+        <button class="reset">reset</button>
       </div>
       
       <div class="right">
         <input id="upload_file" type="file" placeholder="upload file" single>
-        <label for="upload_file">upload image</label>
-        <button class="output">output</button>
-        <button class="copy">copy</button>
-        <button class="reset">reset</button>
-        <button class="download">download</button>
+        <label class="upload icon" for="upload_file"></label>
+        <button class="output icon">output</button>
+        <button class="copy icon"></button>
+        <button class="download icon"></button>
       </div>
     </div>
     <div class="name_output"></div>
     <input type="text" spellcheck="false" class="gradation">
-
+      
+    <textarea class="text_output md" spellcheck="false"></textarea>
   </div>
 
+  
   <a class="download_text_link hidden" download="" href="" ></a>
 
   <div class="sign">

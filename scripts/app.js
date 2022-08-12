@@ -1,4 +1,6 @@
 function init() {
+
+  // TODO edit buttons
   
   const body = document.querySelector('body')
   const canvas = document.querySelector('canvas')
