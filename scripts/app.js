@@ -1,6 +1,4 @@
 function init() {
-
-  // TODO edit buttons
   
   const body = document.querySelector('body')
   const canvas = document.querySelector('canvas')
@@ -29,7 +27,7 @@ function init() {
     // },
     sm: {
       cellD: 4,
-      ratio: 1.3
+      ratio: 1.2,
     },
     md: {
       cellD: 8,
@@ -106,7 +104,7 @@ function init() {
   }
   
   const isValidFile = file =>{
-    return ['jpg','jpeg','png','gif'].some(type => file.split('.')[1].toLowerCase() === type)
+    return ['jpg','jpeg','png','gif'].some(type => file.split('.')[file.split('.').length - 1].toLowerCase() === type)
   }
 
   const output = () =>{
@@ -153,6 +151,7 @@ function init() {
   // event
   uploadFile.addEventListener('change',()=>{
     imgData.uploadedFile = uploadFile.files[0]
+    console.log(imgData.uploadedFile.name)
     document.querySelector('.name_output').innerHTML = isValidFile(imgData.uploadedFile.name) ? imgData.uploadedFile.name : 'not valid file'
   })
 
