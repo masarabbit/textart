@@ -130,7 +130,7 @@ function init() {
 
   const copyText = box =>{
     box.select()
-    box.setSelectionRange(0, 99999) // For mobile devices 
+    box.setSelectionRange(0, 999999) // For mobile devices 
     document.execCommand('copy')
   }
 
@@ -151,12 +151,12 @@ function init() {
   // event
   uploadFile.addEventListener('change',()=>{
     imgData.uploadedFile = uploadFile.files[0]
-    console.log(imgData.uploadedFile.name)
+    // console.log(imgData.uploadedFile.name)
     document.querySelector('.name_output').innerHTML = isValidFile(imgData.uploadedFile.name) ? imgData.uploadedFile.name : 'not valid file'
+    output()
   })
 
   document.querySelector('.copy').addEventListener('click',()=> copyText(textOutput))
-  document.querySelector('.output').addEventListener('click', output)
   label.addEventListener('click', ()=> p.classList.add('hidden'))
   document.querySelector('.color_toggle').addEventListener('change', toggleColor)
 

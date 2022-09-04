@@ -245,9 +245,6 @@ img {
   .mini_wrap {
     justify-content: space-between;
   }
-  .mini_wrap.bottom {
-    justify-content: flex-end;
-  }
   textarea {
     width: calc(100% - 40px);
   }
