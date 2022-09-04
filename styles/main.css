@@ -213,6 +213,12 @@ img {
   width: 100%;
 }
 
+.buttons {
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+
 
 @media screen and (min-width: 0px) { 
   
@@ -232,7 +238,6 @@ img {
 
   .mini_wrap {
     margin: 20px 0 0 0;
-    padding: 0 15px;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -293,6 +298,7 @@ body.light button.icon {
 
 .reset {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAKZJREFUSEvtlUsOgDAIROn9D62psQ1BpgOpxI3uGmEev9ImxV8r1pcI4FgEQf1XBithy4Q66EdGfMC0Vve/zh7AE8/YDX8XYMVpjUUEZUsBEfFRHpi1rZtuXilgV3z2F2UQBdA7sgugi+AH6BLpfszKvDWmHUQB0Ih28nmb3QwsAO0qy1uul8wSY8JuQFXregbz2YODxi/8knmvUGBY8ibRpZZXvj1OlVchGbb4pnUAAAAASUVORK5CYII=);
+  margin-top: 4px !important;
 }
 
 .output {
