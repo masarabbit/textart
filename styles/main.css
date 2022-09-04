@@ -246,7 +246,7 @@ img {
   }
 }
 
-@media screen and (min-width: 340px) { 
+@media screen and (min-width: 360px) { 
   .mini_wrap {
     justify-content: space-between;
   }
