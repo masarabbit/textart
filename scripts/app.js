@@ -52,20 +52,20 @@ function init() {
   const numberOfLetters = () => settings.gradation.length - 1
 
   const processedTexts = ({ column, row }) =>{
-    const processedRowDatas = new Array(row).fill('').map(()=> [])
-    settings.shades.forEach((shade, i)=>{
+    const processedRowDatas = new Array(row).fill('').map(() => [])
+    settings.shades.forEach((shade, i) => {
       const index = settings.isDarkMode ? shade : numberOfLetters() - shade
       processedRowDatas[Math.floor(i / column)]?.push(settings.gradation[index])
     })
     // remove filter if you need to increase density
-    return processedRowDatas.map(data => data.join('')).map(letter =>`${letter}\n`).filter((_l, i) => i % 2 === 0).join('')
+    return processedRowDatas.map(data => data.join('')).map(letter => `${letter}\n`).filter((_l, i) => i % 2 === 0).join('')
   }
 
   const nearestN = (n, denom) => n === 0 ? 0 : (n - 1) + Math.abs(((n - 1) % denom) - denom)
 
   const calcShade = (r, g, b) => Math.round(((r + g + b) / 3) / 255 * numberOfLetters()) // white on black
 
-  const drawImageAndRecordShades = ({ dataURL, update }) =>{
+  const drawImageAndRecordShades = ({ dataURL, update }) => {
     const imageTarget = new Image()    
     imageTarget.onload = () => {
       const { naturalWidth: iWidth, naturalHeight: iHeight } = imageTarget
@@ -89,7 +89,7 @@ function init() {
         const x = i % column * cellD
         const c = ctx.getImageData(x + 2, y + 2, 1, 1).data
         const shade = calcShade(c[0], c[1], c[2])
-        settings.shades.push( c[3] === 0 ? numberOfLetters() : shade)
+        settings.shades.push(c[3] === 0 ? numberOfLetters() : shade)
       })
       elements.textOutput.value = processedTexts({ column, row })
       elements.textOutput.style.height = '0px' // reset height
@@ -133,7 +133,7 @@ function init() {
     const { ratio, cellD } = size_stat[size]
     settings.ratio = ratio
     settings.cellD = cellD
-    settings.maxWidth = (Math.round(elements.textOutput.getBoundingClientRect().width - 20) * ratio)
+    settings.maxWidth = Math.round(elements.textOutput.getBoundingClientRect().width - 20) * ratio
     elements.textOutput.className = `${size}`
     drawImageAndRecordShades({ dataURL: settings.imgURL })
   }
@@ -148,7 +148,9 @@ function init() {
   elements.uploadFile.addEventListener('change',()=>{
     settings.uploadedFile = elements.uploadFile.files[0]
     // console.log(settings.uploadedFile.name)
-    document.querySelector('.name_output').innerHTML = isValidFile(settings.uploadedFile.name) ? settings.uploadedFile.name : 'not valid file'
+    document.querySelector('.name_output').innerHTML = isValidFile(settings.uploadedFile.name) 
+      ? settings.uploadedFile.name 
+      : 'not valid file'
     output()
   })
 
@@ -170,7 +172,7 @@ function init() {
     drawImageAndRecordShades({ dataURL: settings.imgURL })
   }
 
-  elements.textOutput.addEventListener('change', ()=> {
+  elements.textOutput.addEventListener('change', () => {
     elements.textOutput.style.height = '0px' // resetting
     elements.textOutput.style.height = `${elements.textOutput.scrollHeight}px`
   })
@@ -184,12 +186,12 @@ function init() {
 
   window.addEventListener('resize', updateTextImage)
 
-  elements.gradationInput.addEventListener('change', e =>{
+  elements.gradationInput.addEventListener('change', e => {
     settings.gradation = e.target.value
     updateTextImage()
   })
   
-  document.querySelector('.reset').addEventListener('click', ()=>{
+  document.querySelector('.reset').addEventListener('click', () => {
     elements.gradationInput.value = defaultGradation
     settings.gradation = defaultGradation
     ;['contrast', 'brightness'].forEach(param => elements[param].value = 100)
